@@ -21,3 +21,5 @@ func _on_collision_area_body_entered(body: Node3D) -> void:
 		$Rocket/Screws.visible = true
 	elif body.name == "ExteriorWalls":
 		$Rocket/ExteriorWalls.visible = true
+	elif body.name == "Fins":
+		$Rocket/Fins.visible = true
