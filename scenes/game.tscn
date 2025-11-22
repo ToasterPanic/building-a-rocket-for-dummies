@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=3 uid="uid://mif6kxwqpq3r"]
+
+[ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://b444o60h4wxas" path="res://textures/exterior.png" id="2_iywne"]
+[ext_resource type="Texture2D" uid="uid://dal7ii483vsq2" path="res://textures/grass.png" id="2_lbhrr"]
+[ext_resource type="Script" uid="uid://bcvsluy8ww7vc" path="res://scripts/player.gd" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://dbsnhfe6ogc50" path="res://textures/exterior_box.png" id="5_iywne"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnu2h"]
+radius = 1.2333984
+height = 4.8376465
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
+albedo_texture = ExtResource("2_lbhrr")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lbhrr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p57ef"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5sy4"]
+albedo_texture = ExtResource("5_iywne")
+uv1_scale = Vector3(3, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gee14"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_u5sy4")
+custom_aabb = AABB(0, 0, 0, 1, 0, 0)
+
+[node name="Game" type="Node3D"]
+
+[node name="Rocket" type="Sprite3D" parent="."]
+billboard = 2
+texture = ExtResource("1_yqjtg")
+
+[node name="Rocket2" type="Sprite3D" parent="Rocket"]
+billboard = 2
+render_priority = 100
+texture = ExtResource("2_iywne")
+
+[node name="CollisionArea" type="Area3D" parent="Rocket/Rocket2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rocket/Rocket2/CollisionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23669434, 0)
+shape = SubResource("CapsuleShape3D_lnu2h")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+use_collision = true
+size = Vector3(32, 1, 32)
+material = SubResource("StandardMaterial3D_iywne")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("2_lnu2h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_lbhrr")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52250695, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ThePanel" type="Panel" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(160, 600)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -300.0
+offset_right = 160.0
+offset_bottom = 300.0
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/ThePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font size=32]Checklist[/font]
+
+[ ] Fins
+[ ] Life support
+[ ] Fuel
+[ ] Thruster
+[ ] Exterior walls"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.18096548, 0.98348945, 0, -0.98348945, 0.18096548, 0, 0, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+mass = 0.3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_p57ef")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_gee14")
