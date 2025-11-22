@@ -12,5 +12,7 @@ func _process(delta: float) -> void:
 func _on_collision_area_body_entered(body: Node3D) -> void:
 	body.queue_free()
 	
-	if body.name == "ExteriorWalls":
+	if body.name == "Screws":
+		$Rocket/Screws.visible = true
+	elif body.name == "ExteriorWalls":
 		$Rocket/ExteriorWalls.visible = true

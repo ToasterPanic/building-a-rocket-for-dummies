@@ -1,12 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://mif6kxwqpq3r"]
+[gd_scene load_steps=22 format=3 uid="uid://mif6kxwqpq3r"]
 
 [ext_resource type="Script" uid="uid://kov381xcww14" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://b444o60h4wxas" path="res://textures/exterior.png" id="2_iywne"]
 [ext_resource type="Texture2D" uid="uid://dal7ii483vsq2" path="res://textures/grass.png" id="2_lbhrr"]
 [ext_resource type="Script" uid="uid://bcvsluy8ww7vc" path="res://scripts/player.gd" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://c2yxv05fpmudh" path="res://textures/screws.png" id="3_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://dbsnhfe6ogc50" path="res://textures/exterior_box.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://b1elgpgprp37r" path="res://textures/concrete.png" id="5_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://bhw3gb1xs8abk" path="res://textures/screws_box.png" id="8_gee14"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnu2h"]
 radius = 1.2333984
@@ -18,9 +20,23 @@ uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gee14"]
 albedo_texture = ExtResource("5_u5sy4")
-uv1_scale = Vector3(2, 2, 2)
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0tnpc"]
+albedo_texture = ExtResource("5_u5sy4")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lbhrr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u5sy4"]
+font_size = 64
+
+[sub_resource type="Environment" id="Environment_vtaks"]
+ambient_light_source = 2
+ambient_light_color = Color(0.45452422, 0.45452428, 0.45452422, 1)
+ambient_light_energy = 1.32
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p57ef"]
 
@@ -33,6 +49,15 @@ lightmap_size_hint = Vector2i(14, 21)
 material = SubResource("StandardMaterial3D_u5sy4")
 custom_aabb = AABB(0, 0, 0, 1, 0, 0)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtaks"]
+albedo_texture = ExtResource("8_gee14")
+uv1_scale = Vector3(3, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kvpfn"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_vtaks")
+custom_aabb = AABB(0, 0, 0, 1, 0, 0)
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_p57ef")
 
@@ -40,6 +65,12 @@ script = ExtResource("1_p57ef")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 billboard = 2
 texture = ExtResource("1_yqjtg")
+
+[node name="Screws" type="Sprite3D" parent="Rocket"]
+visible = false
+billboard = 2
+render_priority = 1
+texture = ExtResource("3_0tnpc")
 
 [node name="ExteriorWalls" type="Sprite3D" parent="Rocket"]
 visible = false
@@ -67,6 +98,12 @@ use_collision = true
 size = Vector3(8, 8.537598, 8)
 material = SubResource("StandardMaterial3D_gee14")
 
+[node name="Floor3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -0.5, 0)
+use_collision = true
+size = Vector3(1, 4, 32)
+material = SubResource("StandardMaterial3D_0tnpc")
+
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.104138)
 script = ExtResource("2_lnu2h")
@@ -91,24 +128,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ThePanel" type="Panel" parent="CanvasLayer/Control"]
-custom_minimum_size = Vector2(160, 600)
+[node name="ThePanel" type="PanelContainer" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -300.0
 offset_right = 160.0
-offset_bottom = 300.0
+offset_bottom = -100.0
 grow_vertical = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/ThePanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 bbcode_enabled = true
 text = "[font size=32]Checklist[/font]
 
@@ -152,7 +184,21 @@ text = "[E] Drop
 [Left Click] Throw"
 horizontal_alignment = 1
 
+[node name="Timer" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_right = 63.5
+offset_bottom = 88.0
+grow_horizontal = 2
+text = "5:00"
+label_settings = SubResource("LabelSettings_u5sy4")
+horizontal_alignment = 1
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vtaks")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.18096548, 0.98348945, 0, -0.98348945, 0.18096548, 0, 0, 0)
@@ -167,5 +213,16 @@ shape = SubResource("BoxShape3D_p57ef")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ExteriorWalls"]
 mesh = SubResource("BoxMesh_gee14")
+
+[node name="Screws" type="RigidBody3D" parent="."]
+transform = Transform3D(0.70710677, 0, -0.70710677, -0.6123724, -0.50000006, -0.6123724, -0.3535534, 0.8660254, -0.3535534, 0.06348038, 0, 3)
+collision_layer = 3
+mass = 0.3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Screws"]
+shape = SubResource("BoxShape3D_p57ef")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Screws"]
+mesh = SubResource("BoxMesh_kvpfn")
 
 [connection signal="body_entered" from="Rocket/CollisionArea" to="." method="_on_collision_area_body_entered"]
