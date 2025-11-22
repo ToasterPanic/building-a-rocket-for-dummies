@@ -1,6 +1,6 @@
 extends Node3D
 
-var clock = 60 * 5
+var clock = 60 * 2
 
 func _process(delta: float) -> void:
 	clock -= delta

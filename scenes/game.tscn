@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://mif6kxwqpq3r"]
+[gd_scene load_steps=32 format=3 uid="uid://mif6kxwqpq3r"]
 
 [ext_resource type="Script" uid="uid://kov381xcww14" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_yqjtg"]
@@ -8,17 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://c2yxv05fpmudh" path="res://textures/screws.png" id="3_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://dbsnhfe6ogc50" path="res://textures/exterior_box.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://b1elgpgprp37r" path="res://textures/concrete.png" id="5_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://csm8wsmsixn8k" path="res://textures/glass.png" id="6_dinhu"]
 [ext_resource type="PackedScene" uid="uid://cskjwutyf0t8l" path="res://scenes/explodeable.tscn" id="7_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bhw3gb1xs8abk" path="res://textures/screws_box.png" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://cpq3xbnh0fe27" path="res://textures/tnt.png" id="9_vtaks"]
+[ext_resource type="Texture2D" uid="uid://16ya0exued5h" path="res://textures/fins_box.png" id="10_kvuet"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnu2h"]
 radius = 1.2333984
 height = 4.8376465
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
-albedo_texture = ExtResource("2_lbhrr")
-uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dinhu"]
 albedo_texture = ExtResource("5_u5sy4")
@@ -32,6 +30,12 @@ uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0tnpc"]
 albedo_texture = ExtResource("5_u5sy4")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvuet"]
+transparency = 1
+albedo_texture = ExtResource("6_dinhu")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 
@@ -56,6 +60,15 @@ lightmap_size_hint = Vector2i(14, 21)
 material = SubResource("StandardMaterial3D_u5sy4")
 custom_aabb = AABB(0, 0, 0, 1, 0, 0)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trtic"]
+albedo_texture = ExtResource("10_kvuet")
+uv1_scale = Vector3(3, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ir15t"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_trtic")
+custom_aabb = AABB(0, 0, 0, 1, 0, 0)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvpfn"]
 albedo_texture = ExtResource("9_vtaks")
 uv1_scale = Vector3(3, 2, 2)
@@ -73,6 +86,10 @@ uv1_scale = Vector3(3, 2, 2)
 lightmap_size_hint = Vector2i(14, 21)
 material = SubResource("StandardMaterial3D_vtaks")
 custom_aabb = AABB(0, 0, 0, 1, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
+albedo_texture = ExtResource("2_lbhrr")
+uv1_scale = Vector3(10, 10, 10)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_p57ef")
@@ -101,12 +118,6 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Rocket/CollisionArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23669434, 0)
 shape = SubResource("CapsuleShape3D_lnu2h")
-
-[node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
-use_collision = true
-size = Vector3(32, 1, 32)
-material = SubResource("StandardMaterial3D_iywne")
 
 [node name="Floor9" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -26.5)
@@ -168,6 +179,49 @@ use_collision = true
 size = Vector3(6, 4, 1)
 material = SubResource("StandardMaterial3D_0tnpc")
 
+[node name="Floor13" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.5, -26)
+use_collision = true
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor14" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, -0.5, -21)
+use_collision = true
+size = Vector3(5, 4, 1)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor18" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.5, -21)
+use_collision = true
+size = Vector3(5, 4, 1)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor19" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -1.5, -21)
+use_collision = true
+size = Vector3(4, 2, 1)
+material = SubResource("StandardMaterial3D_kvuet")
+
+[node name="Floor16" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -0.5, -18.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor17" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, -0.5, -18.5)
+use_collision = true
+size = Vector3(1, 4, 4)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor15" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -21)
+gi_mode = 0
+use_collision = true
+size = Vector3(16, 1, 11)
+material = SubResource("StandardMaterial3D_0tnpc")
+
 [node name="Floor12" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, -0.5, -21)
 use_collision = true
@@ -186,6 +240,7 @@ shape = SubResource("CapsuleShape3D_lbhrr")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52250695, 0)
+fov = 90.0
 
 [node name="Interact" type="RayCast3D" parent="Player/Camera3D"]
 target_position = Vector3(0, 0, -2.5)
@@ -277,7 +332,7 @@ environment = SubResource("Environment_vtaks")
 transform = Transform3D(1, 0, 0, 0, 0.18096548, 0.98348945, 0, -0.98348945, 0.18096548, 0, 0, 0)
 
 [node name="ExteriorWalls" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.06348, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8830986, 0, -18.274324)
 collision_layer = 3
 mass = 0.3
 
@@ -286,6 +341,17 @@ shape = SubResource("BoxShape3D_p57ef")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ExteriorWalls"]
 mesh = SubResource("BoxMesh_gee14")
+
+[node name="Fins" type="RigidBody3D" parent="."]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 8.116901, 0, -18.274324)
+collision_layer = 3
+mass = 0.3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fins"]
+shape = SubResource("BoxShape3D_p57ef")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Fins"]
+mesh = SubResource("BoxMesh_ir15t")
 
 [node name="TNTBox" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.06348, 0, -12.988743)
@@ -341,5 +407,11 @@ shape = SubResource("BoxShape3D_p57ef")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Screws"]
 mesh = SubResource("BoxMesh_kvpfn")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+use_collision = true
+size = Vector3(32, 1, 32)
+material = SubResource("StandardMaterial3D_iywne")
 
 [connection signal="body_entered" from="Rocket/CollisionArea" to="." method="_on_collision_area_body_entered"]
