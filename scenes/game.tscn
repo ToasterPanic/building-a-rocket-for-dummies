@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://mif6kxwqpq3r"]
+[gd_scene load_steps=27 format=3 uid="uid://mif6kxwqpq3r"]
 
 [ext_resource type="Script" uid="uid://kov381xcww14" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_yqjtg"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://c2yxv05fpmudh" path="res://textures/screws.png" id="3_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://dbsnhfe6ogc50" path="res://textures/exterior_box.png" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://b1elgpgprp37r" path="res://textures/concrete.png" id="5_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://cskjwutyf0t8l" path="res://scenes/explodeable.tscn" id="7_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bhw3gb1xs8abk" path="res://textures/screws_box.png" id="8_gee14"]
+[ext_resource type="Texture2D" uid="uid://cpq3xbnh0fe27" path="res://textures/tnt.png" id="9_vtaks"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnu2h"]
 radius = 1.2333984
@@ -17,6 +19,11 @@ height = 4.8376465
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iywne"]
 albedo_texture = ExtResource("2_lbhrr")
 uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dinhu"]
+albedo_texture = ExtResource("5_u5sy4")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gee14"]
 albedo_texture = ExtResource("5_u5sy4")
@@ -47,6 +54,15 @@ uv1_scale = Vector3(3, 2, 2)
 [sub_resource type="BoxMesh" id="BoxMesh_gee14"]
 lightmap_size_hint = Vector2i(14, 21)
 material = SubResource("StandardMaterial3D_u5sy4")
+custom_aabb = AABB(0, 0, 0, 1, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvpfn"]
+albedo_texture = ExtResource("9_vtaks")
+uv1_scale = Vector3(3, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dinhu"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_kvpfn")
 custom_aabb = AABB(0, 0, 0, 1, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtaks"]
@@ -92,6 +108,12 @@ use_collision = true
 size = Vector3(32, 1, 32)
 material = SubResource("StandardMaterial3D_iywne")
 
+[node name="Floor9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -26.5)
+use_collision = true
+size = Vector3(32, 1, 21)
+material = SubResource("StandardMaterial3D_dinhu")
+
 [node name="Floor2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.768799, 0)
 use_collision = true
@@ -103,6 +125,57 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -0.5, 0)
 use_collision = true
 size = Vector3(1, 4, 32)
 material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, -0.5, 0)
+use_collision = true
+size = Vector3(1, 4, 32)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 16)
+use_collision = true
+size = Vector3(32, 4, 1)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.5, -16)
+use_collision = true
+size = Vector3(12, 4, 1)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -0.5, -16)
+use_collision = true
+size = Vector3(16, 4, 1)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -19)
+use_collision = true
+size = Vector3(1, 4, 5)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -0.5, -19)
+use_collision = true
+size = Vector3(1, 4, 5)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -0.5, -26)
+use_collision = true
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor12" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, -0.5, -21)
+use_collision = true
+size = Vector3(1, 4, 9)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Explodeable" parent="." instance=ExtResource("7_kvpfn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.5, -0.5, -23.5)
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.104138)
@@ -213,6 +286,50 @@ shape = SubResource("BoxShape3D_p57ef")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ExteriorWalls"]
 mesh = SubResource("BoxMesh_gee14")
+
+[node name="TNTBox" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.06348, 0, -12.988743)
+collision_layer = 7
+mass = 0.3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TNTBox"]
+shape = SubResource("BoxShape3D_p57ef")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TNTBox"]
+mesh = SubResource("BoxMesh_dinhu")
+
+[node name="TNTBox2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.229263, 0, -12.988743)
+collision_layer = 7
+mass = 0.3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TNTBox2"]
+shape = SubResource("BoxShape3D_p57ef")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TNTBox2"]
+mesh = SubResource("BoxMesh_dinhu")
+
+[node name="TNTBox3" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.605412, 0, -11.837959)
+collision_layer = 7
+mass = 0.3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TNTBox3"]
+shape = SubResource("BoxShape3D_p57ef")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TNTBox3"]
+mesh = SubResource("BoxMesh_dinhu")
+
+[node name="TNTBox4" type="RigidBody3D" parent="."]
+transform = Transform3D(0.311456, 0, 0.9502606, 0, 1, 0, -0.9502606, 0, 0.311456, 10.605412, 1.2552686, -12.468455)
+collision_layer = 7
+mass = 0.3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TNTBox4"]
+shape = SubResource("BoxShape3D_p57ef")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TNTBox4"]
+mesh = SubResource("BoxMesh_dinhu")
 
 [node name="Screws" type="RigidBody3D" parent="."]
 transform = Transform3D(0.70710677, 0, -0.70710677, -0.6123724, -0.50000006, -0.6123724, -0.3535534, 0.8660254, -0.3535534, 0.06348038, 0, 3)
