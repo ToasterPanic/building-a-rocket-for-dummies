@@ -4,6 +4,19 @@ var clock = 60 * 2
 var game_end = false
 var zooming_in = true
 
+var start_dialogue = [
+	"hey dude uhhhhhhhhhhh",
+	"i know you haven't finished that rocket",
+	"we need it ready in two minutes",
+	"if we dont get it done boss is gonna be PEEVED",
+	"also",
+	"the parts SHOULD be in the building",
+	"some of the parts for that are lost though",
+	"so you might want to find them if you like having a job",
+	"not my problem though i can just blame you for it",
+	"good luck lolololololololololo"
+]
+
 func ending():
 	game_end = true
 	
@@ -11,6 +24,8 @@ func ending():
 	$CanvasLayer/Control/PickUpPrompt.visible = false 
 	$CanvasLayer/Control/ThrowPrompt.visible = false 
 	$CanvasLayer/Control/Timer.visible = false
+	
+	$PaintTheTownRag.stop()
 	
 	$Camera3D.current = true
 	
@@ -78,3 +93,7 @@ func _on_collision_area_body_entered(body: Node3D) -> void:
 		$Rocket/Fins.visible = true
 	elif body.name == "Thruster":
 		$Rocket/Thruster.visible = true
+	elif body.name == "CockpitSeat":
+		$Rocket/CockpitSeat.visible = true
+	elif body.name == "LifeSupport":
+		$Rocket/LifeSupport.visible = true

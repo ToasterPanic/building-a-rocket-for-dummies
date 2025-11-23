@@ -1,10 +1,11 @@
-[gd_scene load_steps=46 format=3 uid="uid://mif6kxwqpq3r"]
+[gd_scene load_steps=52 format=3 uid="uid://mif6kxwqpq3r"]
 
 [ext_resource type="Script" uid="uid://kov381xcww14" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://b444o60h4wxas" path="res://textures/exterior.png" id="2_iywne"]
 [ext_resource type="Texture2D" uid="uid://dal7ii483vsq2" path="res://textures/grass.png" id="2_lbhrr"]
 [ext_resource type="Script" uid="uid://bcvsluy8ww7vc" path="res://scripts/player.gd" id="2_lnu2h"]
+[ext_resource type="AudioStream" uid="uid://bgf1tm5y2hqxp" path="res://sounds/paint_the_town_rag.mp3" id="2_pl11u"]
 [ext_resource type="AudioStream" uid="uid://b0tm625ykbtlk" path="res://sounds/drumroll.mp3" id="2_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://c2yxv05fpmudh" path="res://textures/screws.png" id="3_0tnpc"]
 [ext_resource type="AudioStream" uid="uid://b4ll4bfpjn0bi" path="res://sounds/failure.mp3" id="3_1kice"]
@@ -23,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://bhncocas36gxd" path="res://scenes/tnt_box.tscn" id="11_kvuet"]
 [ext_resource type="Texture2D" uid="uid://cm1f7nltppnu0" path="res://textures/basic_box.png" id="12_ir15t"]
 [ext_resource type="Texture2D" uid="uid://d4kpog0nkrd4b" path="res://textures/thruster_box.png" id="13_ca42v"]
+[ext_resource type="Texture2D" uid="uid://cfvb2hjv6ut0o" path="res://textures/arrow.png" id="14_e1j6l"]
+[ext_resource type="Texture2D" uid="uid://dpgxhn68vqfso" path="res://textures/cockpit_seat_box.png" id="21_e1j6l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnu2h"]
 radius = 1.2333984
@@ -42,6 +45,9 @@ uv1_triplanar = true
 albedo_texture = ExtResource("5_u5sy4")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pl11u"]
+albedo_texture = ExtResource("14_e1j6l")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvuet"]
 transparency = 1
@@ -100,13 +106,22 @@ lightmap_size_hint = Vector2i(14, 21)
 material = SubResource("StandardMaterial3D_ca42v")
 custom_aabb = AABB(0, 0, 0, 1, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rysoc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnb83"]
 albedo_texture = ExtResource("13_ca42v")
+uv1_scale = Vector3(3, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sww3w"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_qnb83")
+custom_aabb = AABB(0, 0, 0, 1, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhx41"]
+albedo_texture = ExtResource("21_e1j6l")
 uv1_scale = Vector3(3, 2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ssvqc"]
 lightmap_size_hint = Vector2i(14, 21)
-material = SubResource("StandardMaterial3D_rysoc")
+material = SubResource("StandardMaterial3D_bhx41")
 custom_aabb = AABB(0, 0, 0, 1, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtaks"]
@@ -124,6 +139,10 @@ uv1_scale = Vector3(10, 10, 10)
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_p57ef")
+
+[node name="PaintTheTownRag" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pl11u")
+autoplay = true
 
 [node name="Drumroll" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ssvqc")
@@ -264,6 +283,12 @@ use_collision = true
 size = Vector3(11, 4, 1)
 material = SubResource("StandardMaterial3D_0tnpc")
 
+[node name="Floor42" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 7, 0.3850137, -26.200378)
+use_collision = true
+size = Vector3(2, 2, 0.62072754)
+material = SubResource("StandardMaterial3D_pl11u")
+
 [node name="Floor24" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, -30)
 use_collision = true
@@ -355,9 +380,9 @@ size = Vector3(8, 1, 10)
 material = SubResource("StandardMaterial3D_0tnpc")
 
 [node name="Floor31" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -1, -27.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -1, -27.836426)
 use_collision = true
-size = Vector3(6, 0.5, 2)
+size = Vector3(6, 0.5, 2.6728516)
 material = SubResource("StandardMaterial3D_0tnpc")
 
 [node name="Floor19" type="CSGBox3D" parent="."]
@@ -567,6 +592,27 @@ text = "SUCCESS!!!"
 label_settings = SubResource("LabelSettings_264po")
 horizontal_alignment = 1
 
+[node name="GameEndButtons" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RetryButton" type="Button" parent="CanvasLayer/Control/GameEndButtons"]
+layout_mode = 2
+text = "Retry"
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/Control/GameEndButtons"]
+layout_mode = 2
+text = "Exit to Main Menu"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vtaks")
 
@@ -699,7 +745,7 @@ shape = SubResource("BoxShape3D_p57ef")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Thruster"]
 extra_cull_margin = 16384.0
-mesh = SubResource("BoxMesh_ssvqc")
+mesh = SubResource("BoxMesh_sww3w")
 
 [node name="CockpitSeat" type="RigidBody3D" parent="."]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 7.234481, 3.113425, -32.274323)
