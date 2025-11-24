@@ -10,12 +10,12 @@ func _ready() -> void:
 	$UI/Settings/HBoxContainer/MusicVolume.value = AudioServer.get_bus_volume_linear(1)
 	$UI/Settings/HBoxContainer/SoundEffectVolume.value = AudioServer.get_bus_volume_linear(2)
 	
-	$UI/Settings/HBoxContainer/Modifiers/EasyMode.value = global.easy_mode
-	$UI/Settings/HBoxContainer/Modifiers/UberProcrastination.value = global.uber_procrastination
-	$UI/Settings/HBoxContainer/Modifiers/TwoLeftFeet.value = global.two_left_feet
-	$UI/Settings/HBoxContainer/Modifiers/HeavyBoxes.value = global.heavy_boxes
-	$UI/Settings/HBoxContainer/Modifiers/Fat.value = global.fat
-	$UI/Settings/HBoxContainer/Modifiers/Flat.value = global.flat
+	$UI/Settings/HBoxContainer/Modifiers/EasyMode.button_pressed = global.easy_mode
+	$UI/Settings/HBoxContainer/Modifiers/UberProcrastination.button_pressed = global.uber_procrastination
+	$UI/Settings/HBoxContainer/Modifiers/TwoLeftFeet.button_pressed = global.two_left_feet
+	$UI/Settings/HBoxContainer/Modifiers/HeavyBoxes.button_pressed = global.heavy_boxes
+	$UI/Settings/HBoxContainer/Modifiers/Fat.button_pressed = global.fat
+	$UI/Settings/HBoxContainer/Modifiers/Flat.button_pressed = global.flat
 	
 	$UI/Settings/HBoxContainer/FieldOfView.value = global.field_of_view
 

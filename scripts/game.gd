@@ -48,7 +48,16 @@ func ending():
 	$CanvasLayer/Control/Success.scale = Vector2(0, 0)
 	$CanvasLayer/Control/Failure.scale = Vector2(0, 0)
 	
-	if false:
+	var win = true 
+	
+	if !$Rocket/Screws.visible: win = false
+	elif !$Rocket/Fins.visible: win = false
+	elif !$Rocket/CockpitSeat.visible: win = false
+	elif !$Rocket/LifeSupport.visible: win = false
+	elif !$Rocket/Thruster.visible: win = false
+	elif !$Rocket/ExteriorWalls.visible: win = false
+	
+	if win:
 		$CanvasLayer/Control/Success.visible = true
 	else:
 		$CanvasLayer/Control/Failure.visible = true
