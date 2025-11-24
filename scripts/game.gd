@@ -173,3 +173,12 @@ func _on_retry_button_pressed() -> void:
 
 func _on_main_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/title_screen.tscn")
+
+
+func _on_button_body_entered(body: Node3D) -> void:
+	$Button.position.y -= 0.1
+	$Button/Area3D.queue_free()
+	
+	# Drop the box down
+	$Trapdoor.queue_free()
+	$LifeSupport.sleeping = false

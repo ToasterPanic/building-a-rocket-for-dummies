@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://mif6kxwqpq3r"]
+[gd_scene load_steps=65 format=3 uid="uid://mif6kxwqpq3r"]
 
 [ext_resource type="Script" uid="uid://kov381xcww14" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_yqjtg"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://d3xjo7v6qpgc7" path="res://textures/meeple_2.png" id="20_suyxu"]
 [ext_resource type="Texture2D" uid="uid://dpgxhn68vqfso" path="res://textures/cockpit_seat_box.png" id="21_e1j6l"]
 [ext_resource type="AudioStream" uid="uid://d3c88peq3uqf8" path="res://sounds/voice.mp3" id="21_sgl2t"]
+[ext_resource type="Texture2D" uid="uid://c22cl1em4ipbf" path="res://textures/life_support_box.png" id="28_qouja"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnu2h"]
 radius = 1.2333984
@@ -58,6 +59,27 @@ transparency = 1
 albedo_texture = ExtResource("6_dinhu")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qouja"]
+load_path = "res://.godot/imported/concrete.png-8f9f059bf109dbd4461c6d6a89a5897b.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2yb1"]
+albedo_color = Color(0.41981313, 0.41981313, 0.4198131, 1)
+albedo_texture = SubResource("CompressedTexture2D_qouja")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_js0lu"]
+load_path = "res://.godot/imported/concrete.png-8f9f059bf109dbd4461c6d6a89a5897b.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gxtfn"]
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_js0lu")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_twgab"]
+size = Vector3(1.8, 0.6, 1.8)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lbhrr"]
 
@@ -133,6 +155,15 @@ uv1_scale = Vector3(3, 2, 2)
 [sub_resource type="BoxMesh" id="BoxMesh_ssvqc"]
 lightmap_size_hint = Vector2i(14, 21)
 material = SubResource("StandardMaterial3D_bhx41")
+custom_aabb = AABB(0, 0, 0, 1, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wljb1"]
+albedo_texture = ExtResource("28_qouja")
+uv1_scale = Vector3(3, 2, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v2yb1"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_wljb1")
 custom_aabb = AABB(0, 0, 0, 1, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtaks"]
@@ -412,6 +443,24 @@ use_collision = true
 size = Vector3(4, 1.95, 1)
 material = SubResource("StandardMaterial3D_kvuet")
 
+[node name="Floor44" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5.473633, -19.5005)
+use_collision = true
+size = Vector3(2, 1.95, 0.001)
+material = SubResource("StandardMaterial3D_kvuet")
+
+[node name="Floor45" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0005, 5.473633, -20.5)
+use_collision = true
+size = Vector3(0.001, 1.95, 2)
+material = SubResource("StandardMaterial3D_kvuet")
+
+[node name="Trapdoor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4.4991326, -20.5)
+use_collision = true
+size = Vector3(2, 0.001, 2)
+material = SubResource("StandardMaterial3D_0tnpc")
+
 [node name="Floor36" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -32.5)
 use_collision = true
@@ -436,6 +485,28 @@ gi_mode = 0
 use_collision = true
 size = Vector3(32, 1, 12)
 material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor47" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.976701, 2.6086426, -18.5)
+gi_mode = 0
+use_collision = true
+size = Vector3(2, 0.21728516, 2)
+material = SubResource("StandardMaterial3D_v2yb1")
+
+[node name="Button" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.976701, 2.706569, -18.5)
+layers = 2
+gi_mode = 0
+use_collision = true
+size = Vector3(1.8, 0.41315624, 1.8)
+material = SubResource("StandardMaterial3D_gxtfn")
+
+[node name="Area3D" type="Area3D" parent="Button"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Button/Area3D"]
+shape = SubResource("BoxShape3D_twgab")
 
 [node name="Floor25" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -35.5)
@@ -833,6 +904,19 @@ shape = SubResource("BoxShape3D_p57ef")
 extra_cull_margin = 16384.0
 mesh = SubResource("BoxMesh_ssvqc")
 
+[node name="LifeSupport" type="RigidBody3D" parent="."]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 11.813134, 5.244397, -20.513271)
+collision_layer = 3
+mass = 0.3
+metadata/no_delete = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LifeSupport"]
+shape = SubResource("BoxShape3D_p57ef")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LifeSupport"]
+extra_cull_margin = 16384.0
+mesh = SubResource("BoxMesh_v2yb1")
+
 [node name="BasicCrate9" type="RigidBody3D" parent="."]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 2.1169014, -0.99330896, -27.274324)
 collision_layer = 3
@@ -872,5 +956,6 @@ transform = Transform3D(-0.6815924, 0.122449346, 0.72141385, -0.006875199, 0.984
 fov = 50.0
 
 [connection signal="body_entered" from="Rocket/CollisionArea" to="." method="_on_collision_area_body_entered"]
+[connection signal="body_entered" from="Button/Area3D" to="." method="_on_button_body_entered"]
 [connection signal="pressed" from="CanvasLayer/Control/GameEndButtons/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GameEndButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
