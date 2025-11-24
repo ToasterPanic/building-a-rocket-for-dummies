@@ -61,6 +61,9 @@ func ending():
 func _ready() -> void:
 	game_end = true 
 	
+	$CanvasLayer/Control/Timer.visible = false
+	$CanvasLayer/Control/ThePanel.visible = false
+	
 	var i = 0
 	while i < start_dialogue.size():
 		var character = 0
@@ -96,6 +99,9 @@ func _ready() -> void:
 	$Player/Camera3D.current = true
 	
 	$PaintTheTownRag.play()
+	
+	$CanvasLayer/Control/Timer.visible = true
+	$CanvasLayer/Control/ThePanel.visible = true
 
 func _process(delta: float) -> void:
 	if game_end: 
