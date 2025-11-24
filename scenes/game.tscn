@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://mif6kxwqpq3r"]
+[gd_scene load_steps=66 format=3 uid="uid://mif6kxwqpq3r"]
 
 [ext_resource type="Script" uid="uid://kov381xcww14" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_yqjtg"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://d3xjo7v6qpgc7" path="res://textures/meeple_2.png" id="20_suyxu"]
 [ext_resource type="Texture2D" uid="uid://dpgxhn68vqfso" path="res://textures/cockpit_seat_box.png" id="21_e1j6l"]
 [ext_resource type="AudioStream" uid="uid://d3c88peq3uqf8" path="res://sounds/voice.mp3" id="21_sgl2t"]
+[ext_resource type="Texture2D" uid="uid://yrxrt2ytnej5" path="res://textures/nerd.png" id="23_wljb1"]
 [ext_resource type="Texture2D" uid="uid://c22cl1em4ipbf" path="res://textures/life_support_box.png" id="28_qouja"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnu2h"]
@@ -265,6 +266,8 @@ material = SubResource("StandardMaterial3D_dinhu")
 [node name="Floor2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.768799, 0)
 use_collision = true
+collision_layer = 9
+collision_mask = 9
 size = Vector3(8, 8.537598, 8)
 material = SubResource("StandardMaterial3D_gee14")
 
@@ -602,6 +605,21 @@ text = "good luck lolololololololo"
 font_size = 48
 vertical_alignment = 2
 autowrap_mode = 3
+
+[node name="Nerd" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9107977, 0.82900405, -2.0263748)
+visible = false
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("20_sgl2t")
+
+[node name="Meeple" type="Sprite3D" parent="Nerd"]
+pixel_size = 0.003
+billboard = 2
+texture = ExtResource("23_wljb1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Nerd"]
+shape = SubResource("CapsuleShape3D_lbhrr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

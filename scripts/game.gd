@@ -24,6 +24,8 @@ func ending():
 	
 	$CanvasLayer/Control/GameEndButtons.visible = true
 	
+	$Nerd.visible = true
+	
 	$Camera3D.fov = 50
 	
 	$CanvasLayer/Control/ThePanel.visible = false 
