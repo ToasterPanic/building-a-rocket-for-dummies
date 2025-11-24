@@ -61,6 +61,18 @@ func ending():
 func _ready() -> void:
 	game_end = true 
 	
+	if global.easy_mode:
+		clock = 60 + 60 + 55
+	elif global.uber_procrastination:
+		clock = 60
+		
+	if global.flat:
+		$Camera3D.projection = 1
+		$Player/Camera3D.projection = 1
+		$Player/Camera3D.size = 5
+		$StartCutscene.projection = 1
+		$StartCutscene.size = 5
+	
 	$CanvasLayer/Control/Timer.visible = false
 	$CanvasLayer/Control/ThePanel.visible = false
 	

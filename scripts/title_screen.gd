@@ -58,3 +58,20 @@ func _on_music_volume_value_changed(value: float) -> void:
 func _on_sound_effect_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(2, value)
 	$UI/Settings/HBoxContainer/SoundEffectVolume/Test.play()
+
+func _on_uber_procrastination_toggled(toggled_on: bool) -> void: global.uber_procrastination = toggled_on
+
+
+func _on_easy_mode_toggled(toggled_on: bool) -> void: global.easy_mode = toggled_on
+
+
+func _on_two_left_feet_toggled(toggled_on: bool) -> void: global.two_left_feet = toggled_on
+
+
+func _on_heavy_boxes_toggled(toggled_on: bool) -> void: global.heavy_boxes = toggled_on
+
+
+func _on_fat_toggled(toggled_on: bool) -> void: global.fat = toggled_on
+
+
+func _on_flat_toggled(toggled_on: bool) -> void: global.flat = toggled_on

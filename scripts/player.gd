@@ -26,7 +26,7 @@ func _physics_process(delta):
 		return 
 		
 	if Input.is_action_just_pressed("throw"):
-		if held_object != null:
+		if !global.heavy_boxes and (held_object != null):
 			held_object.linear_velocity = $Camera3D.global_basis * Vector3(0, 0, -11)
 			held_object = null
 	elif Input.is_action_just_pressed("interact"):
@@ -36,20 +36,28 @@ func _physics_process(delta):
 	print(held_object)
 	
 	if held_object != null:
-		var target_pos = $Camera3D.global_transform.origin + ($Camera3D.global_basis * Vector3(0, 0, -2.5)) # 2.5 units in front of camera
-		var object_pos = held_object.global_transform.origin # Held object position
-		held_object.linear_velocity = (target_pos - object_pos) * 7 # Our desired position
+		var target_pos = $Camera3D.global_transform.origin + ($Camera3D.global_basis * Vector3(0, 0, -2.5))
+		var object_pos = held_object.global_transform.origin 
+		if global.heavy_boxes: held_object.linear_velocity = (target_pos - object_pos) * 4
+		else: held_object.linear_velocity = (target_pos - object_pos) * 7 
 		
 		if held_object.global_position.distance_to($Camera3D.global_position) > 4:
 			held_object = null
 		
 		
 	velocity.y += -gravity * delta
+	
 	var input = Input.get_vector("left", "right", "forward", "back")
+	if global.two_left_feet:
+		if ((floori(get_parent().clock) / 20) % 4) == 0: input = Input.get_vector("left", "right", "forward", "back")
+		elif ((floori(get_parent().clock) / 20) % 4) == 1: input = Input.get_vector("back", "left", "right", "forward")
+		elif ((floori(get_parent().clock) / 20) % 4) == 2: input = Input.get_vector("forward", "back", "left", "right")
+		elif ((floori(get_parent().clock) / 20) % 4) == 3: input = Input.get_vector("right", "forward", "back", "left")
+		
 	var movement_dir = transform.basis * Vector3(input.x, 0, input.y)
 	velocity.x = movement_dir.x * speed
 	velocity.z = movement_dir.z * speed
 
 	move_and_slide()
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
+	if is_on_floor() and Input.is_action_just_pressed("jump") and !global.fat:
 		velocity.y = jump_speed

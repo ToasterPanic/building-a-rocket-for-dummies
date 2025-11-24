@@ -137,7 +137,6 @@ grow_vertical = 0
 text = "Return"
 
 [node name="Settings" type="Panel" parent="UI"]
-visible = false
 custom_minimum_size = Vector2(360, 360)
 layout_mode = 1
 anchors_preset = 8
@@ -229,27 +228,38 @@ layout_mode = 2
 [node name="EasyMode" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
 layout_mode = 2
 tooltip_text = "You get bonus time!"
+theme_override_font_sizes/font_size = 12
 text = "Easy Mode"
 
 [node name="UberProcrastination" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
 layout_mode = 2
 tooltip_text = "You have a time limit of 60 seconds. Good luck."
+theme_override_font_sizes/font_size = 12
 text = "Uber Procrastination"
 
 [node name="TwoLeftFeet" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
 layout_mode = 2
 tooltip_text = "Your movement controls \"rotate\" every 20 seconds."
+theme_override_font_sizes/font_size = 12
 text = "Two Left Feet"
 
 [node name="HeavyBoxes" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
 layout_mode = 2
 tooltip_text = "You can't throw boxes, and boxes are harder to hold."
+theme_override_font_sizes/font_size = 12
 text = "Heavy Boxes"
 
 [node name="Fat" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
 layout_mode = 2
 tooltip_text = "You can't jump."
+theme_override_font_sizes/font_size = 12
 text = "Fat"
+
+[node name="Flat" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
+layout_mode = 2
+tooltip_text = "You now view the world orthagonally."
+theme_override_font_sizes/font_size = 12
+text = "Flat"
 
 [node name="ReturnButton" type="Button" parent="UI/Settings"]
 layout_mode = 1
@@ -347,4 +357,10 @@ material = SubResource("StandardMaterial3D_u26n3")
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/MasterVolume" to="." method="_on_master_volume_value_changed"]
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/SoundEffectVolume" to="." method="_on_sound_effect_volume_value_changed"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/EasyMode" to="." method="_on_easy_mode_toggled"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/UberProcrastination" to="." method="_on_uber_procrastination_toggled"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/TwoLeftFeet" to="." method="_on_two_left_feet_toggled"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/HeavyBoxes" to="." method="_on_heavy_boxes_toggled"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Fat" to="." method="_on_fat_toggled"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Flat" to="." method="_on_flat_toggled"]
 [connection signal="pressed" from="UI/Settings/ReturnButton" to="." method="_on_return_button_pressed"]
