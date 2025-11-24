@@ -216,6 +216,21 @@ value = 1.0
 stream = ExtResource("2_e54dn")
 bus = &"Sound Effects"
 
+[node name="FieldOfViewLabel" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Field of View: 90"
+fit_content = true
+
+[node name="FieldOfView" type="HSlider" parent="UI/Settings/HBoxContainer"]
+layout_mode = 2
+min_value = 60.0
+max_value = 120.0
+step = 5.0
+value = 90.0
+tick_count = 15
+ticks_on_borders = true
+
 [node name="RichTextLabel5" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
@@ -357,6 +372,7 @@ material = SubResource("StandardMaterial3D_u26n3")
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/MasterVolume" to="." method="_on_master_volume_value_changed"]
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/SoundEffectVolume" to="." method="_on_sound_effect_volume_value_changed"]
+[connection signal="value_changed" from="UI/Settings/HBoxContainer/FieldOfView" to="." method="_on_field_of_view_value_changed"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/EasyMode" to="." method="_on_easy_mode_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/UberProcrastination" to="." method="_on_uber_procrastination_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/TwoLeftFeet" to="." method="_on_two_left_feet_toggled"]
