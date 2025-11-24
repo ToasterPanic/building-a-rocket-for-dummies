@@ -305,6 +305,12 @@ tooltip_text = "You're blind."
 theme_override_font_sizes/font_size = 12
 text = "Blind"
 
+[node name="TwistyTurny" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
+layout_mode = 2
+tooltip_text = "Your camera controls are inverted."
+theme_override_font_sizes/font_size = 12
+text = "Twisty Turny"
+
 [node name="ReturnButton" type="Button" parent="UI/Settings"]
 layout_mode = 1
 anchors_preset = 7
@@ -412,4 +418,5 @@ material = SubResource("StandardMaterial3D_u26n3")
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/BudgetFlash" to="." method="_on_budget_flash_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Gun" to="." method="_on_gun_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Blind" to="." method="_on_blind_toggled"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/TwistyTurny" to="." method="_on_twisty_turny_toggled"]
 [connection signal="pressed" from="UI/Settings/ReturnButton" to="." method="_on_return_button_pressed"]

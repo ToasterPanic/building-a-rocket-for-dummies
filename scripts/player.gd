@@ -14,6 +14,8 @@ func _ready():
 		speed = 50
 	if global.gun:
 		$Camera3D/Interact.target_position.z = -99999
+	if global.twisty_turny:
+		mouse_sensitivity *= -1
 
 func _input(event):
 	if get_parent().game_end:

@@ -11,5 +11,6 @@ var budget_flash = false
 var gun = false
 var skip_dialogue = false
 var blind = false
+var twisty_turny = false
 
 var field_of_view = 90

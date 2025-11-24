@@ -91,3 +91,5 @@ func _on_gun_toggled(toggled_on: bool) -> void: global.gun = toggled_on
 func _on_skip_dialogue_toggled(toggled_on: bool) -> void: global.skip_dialogue = toggled_on
 
 func _on_blind_toggled(toggled_on: bool) -> void: global.blind = toggled_on
+
+func _on_twisty_turny_toggled(toggled_on: bool) -> void: global.twisty_turny = toggled_on
