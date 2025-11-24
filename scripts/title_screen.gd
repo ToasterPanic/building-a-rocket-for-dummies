@@ -20,6 +20,9 @@ func _ready() -> void:
 	$UI/Settings/HBoxContainer/Modifiers/SkipDialogue.button_pressed = global.skip_dialogue
 	
 	$UI/Settings/HBoxContainer/FieldOfView.value = global.field_of_view
+	$UI/Settings/HBoxContainer/FieldOfViewLabel.text = "Field of View: " + str(floorf(global.field_of_view))
+	$UI/Settings/HBoxContainer/MouseSensitivity.value = global.mouse_sensitivity * 100
+	$UI/Settings/HBoxContainer/MouseSensitivityLabel.text = "Mouse Sensitivity: " + str(floorf(global.mouse_sensitivity * 100 * 100)) + "%"
 
 func _process(delta: float) -> void:
 	if mode == "menu":
@@ -84,7 +87,9 @@ func _on_flat_toggled(toggled_on: bool) -> void: global.flat = toggled_on
 
 func _on_budget_flash_toggled(toggled_on: bool) -> void: global.budget_flash = toggled_on
 
-func _on_field_of_view_value_changed(value: float) -> void: global.field_of_view = value
+func _on_field_of_view_value_changed(value: float) -> void: 
+	global.field_of_view = value
+	$UI/Settings/HBoxContainer/FieldOfViewLabel.text = "Field of View: " + str(floorf(global.field_of_view))
 
 func _on_gun_toggled(toggled_on: bool) -> void: global.gun = toggled_on
 
@@ -93,3 +98,7 @@ func _on_skip_dialogue_toggled(toggled_on: bool) -> void: global.skip_dialogue =
 func _on_blind_toggled(toggled_on: bool) -> void: global.blind = toggled_on
 
 func _on_twisty_turny_toggled(toggled_on: bool) -> void: global.twisty_turny = toggled_on
+
+func _on_mouse_sensitivity_value_changed(value: float) -> void: 
+	global.mouse_sensitivity = value * 0.01
+	$UI/Settings/HBoxContainer/MouseSensitivityLabel.text = "Mouse Sensitivity: " + str(floorf(value * 100)) + "%"

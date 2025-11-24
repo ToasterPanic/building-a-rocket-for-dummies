@@ -14,3 +14,4 @@ var blind = false
 var twisty_turny = false
 
 var field_of_view = 90
+var mouse_sensitivity = 0.002

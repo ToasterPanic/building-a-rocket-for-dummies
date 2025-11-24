@@ -137,7 +137,7 @@ grow_vertical = 0
 text = "Return"
 
 [node name="Settings" type="Panel" parent="UI"]
-custom_minimum_size = Vector2(360, 360)
+custom_minimum_size = Vector2(360, 424)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -232,6 +232,21 @@ min_value = 60.0
 max_value = 120.0
 step = 5.0
 value = 90.0
+tick_count = 15
+ticks_on_borders = true
+
+[node name="MouseSensitivityLabel" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+text = "MouseSensitivity: 20%"
+fit_content = true
+
+[node name="MouseSensitivity" type="HSlider" parent="UI/Settings/HBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.2
 tick_count = 15
 ticks_on_borders = true
 
@@ -408,6 +423,7 @@ material = SubResource("StandardMaterial3D_u26n3")
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/SoundEffectVolume" to="." method="_on_sound_effect_volume_value_changed"]
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/FieldOfView" to="." method="_on_field_of_view_value_changed"]
+[connection signal="value_changed" from="UI/Settings/HBoxContainer/MouseSensitivity" to="." method="_on_mouse_sensitivity_value_changed"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/SkipDialogue" to="." method="_on_skip_dialogue_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/EasyMode" to="." method="_on_easy_mode_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/UberProcrastination" to="." method="_on_uber_procrastination_toggled"]

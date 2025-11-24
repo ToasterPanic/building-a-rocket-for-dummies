@@ -3,7 +3,7 @@ extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var speed = 5
 var jump_speed = 6.5
-var mouse_sensitivity = 0.002
+var mouse_sensitivity = global.mouse_sensitivity
 
 var held_object = null
 
@@ -45,8 +45,6 @@ func _physics_process(delta):
 		if held_object != null: held_object = null
 		elif $Camera3D/Interact.is_colliding() and !global.gun: 
 			held_object = $Camera3D/Interact.get_collider()
-		
-	print(held_object)
 	
 	if held_object != null:
 		var target_pos = $Camera3D.global_transform.origin + ($Camera3D.global_basis * Vector3(0, 0, -2.5))
