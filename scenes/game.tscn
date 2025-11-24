@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://mif6kxwqpq3r"]
+[gd_scene load_steps=69 format=3 uid="uid://mif6kxwqpq3r"]
 
 [ext_resource type="Script" uid="uid://kov381xcww14" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_yqjtg"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://b4frgjvkfryyj" path="res://textures/thruster.png" id="5_rysoc"]
 [ext_resource type="Texture2D" uid="uid://b1elgpgprp37r" path="res://textures/concrete.png" id="5_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://csm8wsmsixn8k" path="res://textures/glass.png" id="6_dinhu"]
+[ext_resource type="AudioStream" uid="uid://dvgw0bin3ymk3" path="res://sounds/success.mp3" id="7_gxtfn"]
 [ext_resource type="AudioStream" uid="uid://bslkenev14tym" path="res://sounds/gunshot.mp3" id="7_js0lu"]
 [ext_resource type="PackedScene" uid="uid://cskjwutyf0t8l" path="res://scenes/explodeable.tscn" id="7_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bhw3gb1xs8abk" path="res://textures/screws_box.png" id="8_gee14"]
@@ -188,6 +189,10 @@ script = ExtResource("1_p57ef")
 
 [node name="PaintTheTownRag" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_pl11u")
+bus = &"Music"
+
+[node name="Success" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_gxtfn")
 bus = &"Music"
 
 [node name="Drumroll" type="AudioStreamPlayer" parent="."]
@@ -645,6 +650,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Blindness" type="ColorRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Gun" type="TextureRect" parent="CanvasLayer/Control"]
 visible = false

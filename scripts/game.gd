@@ -61,6 +61,8 @@ func ending():
 	
 	if win:
 		$CanvasLayer/Control/Success.visible = true
+		
+		$Success.play()
 	else:
 		$CanvasLayer/Control/Failure.visible = true
 		
@@ -86,39 +88,43 @@ func _ready() -> void:
 		
 	if global.gun:
 		$CanvasLayer/Control/Gun.visible = true
+		
+	if global.blind:
+		$CanvasLayer/Control/Blindness.visible = true
 	
 	$CanvasLayer/Control/Timer.visible = false
 	$CanvasLayer/Control/ThePanel.visible = false
 	
-	var i = 0
-	while i < start_dialogue.size():
-		var character = 0
-		
-		$DialogueMan/Label3D.text = ""
-		
-		while character < start_dialogue[i].length():
-			$DialogueMan/Label3D.text = $DialogueMan/Label3D.text + start_dialogue[i][character]
+	if !global.skip_dialogue:
+		var i = 0
+		while i < start_dialogue.size():
+			var character = 0
 			
-			$DialogueMan/Voice.play()
-		
-			if Input.is_action_pressed("interact"):
-				await get_tree().create_timer(0.002).timeout
-			else:
-				await get_tree().create_timer(0.025).timeout
+			$DialogueMan/Label3D.text = ""
 			
-			character += 1
+			while character < start_dialogue[i].length():
+				$DialogueMan/Label3D.text = $DialogueMan/Label3D.text + start_dialogue[i][character]
+				
+				$DialogueMan/Voice.play()
 			
-		if i != start_dialogue.size() - 1:
-			while Input.is_action_just_pressed("interact") == false:
-				await get_tree().create_timer(0.01).timeout
-		
-		i += 1
-		
+				if Input.is_action_pressed("interact"):
+					await get_tree().create_timer(0.002).timeout
+				else:
+					await get_tree().create_timer(0.025).timeout
+				
+				character += 1
+				
+			if i != start_dialogue.size() - 1:
+				while Input.is_action_just_pressed("interact") == false:
+					await get_tree().create_timer(0.01).timeout
+			
+			i += 1
+			
 	$DialogueMan.go_away = true 
 	
 	$CanvasLayer/Control/AdvanceDialogue.visible = false
 	
-	await get_tree().create_timer(1.5).timeout
+	if !global.skip_dialogue: await get_tree().create_timer(1.5).timeout
 	
 	game_end = false
 	

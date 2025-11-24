@@ -245,6 +245,12 @@ fit_content = true
 [node name="Modifiers" type="HFlowContainer" parent="UI/Settings/HBoxContainer"]
 layout_mode = 2
 
+[node name="SkipDialogue" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
+layout_mode = 2
+tooltip_text = "You have a gun. You can only shoot crates to move them."
+theme_override_font_sizes/font_size = 12
+text = "Skip Dialogue"
+
 [node name="EasyMode" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
 layout_mode = 2
 tooltip_text = "You get bonus time!"
@@ -255,7 +261,7 @@ text = "Easy Mode"
 layout_mode = 2
 tooltip_text = "You have a time limit of 60 seconds. Good luck."
 theme_override_font_sizes/font_size = 12
-text = "Uber Procrastination"
+text = "Procrastination"
 
 [node name="TwoLeftFeet" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
 layout_mode = 2
@@ -292,6 +298,12 @@ layout_mode = 2
 tooltip_text = "You have a gun. You can only shoot crates to move them."
 theme_override_font_sizes/font_size = 12
 text = "Gun"
+
+[node name="Blind" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
+layout_mode = 2
+tooltip_text = "You're blind."
+theme_override_font_sizes/font_size = 12
+text = "Blind"
 
 [node name="ReturnButton" type="Button" parent="UI/Settings"]
 layout_mode = 1
@@ -390,6 +402,7 @@ material = SubResource("StandardMaterial3D_u26n3")
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/SoundEffectVolume" to="." method="_on_sound_effect_volume_value_changed"]
 [connection signal="value_changed" from="UI/Settings/HBoxContainer/FieldOfView" to="." method="_on_field_of_view_value_changed"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/SkipDialogue" to="." method="_on_skip_dialogue_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/EasyMode" to="." method="_on_easy_mode_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/UberProcrastination" to="." method="_on_uber_procrastination_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/TwoLeftFeet" to="." method="_on_two_left_feet_toggled"]
@@ -398,4 +411,5 @@ material = SubResource("StandardMaterial3D_u26n3")
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Flat" to="." method="_on_flat_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/BudgetFlash" to="." method="_on_budget_flash_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Gun" to="." method="_on_gun_toggled"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Blind" to="." method="_on_blind_toggled"]
 [connection signal="pressed" from="UI/Settings/ReturnButton" to="." method="_on_return_button_pressed"]

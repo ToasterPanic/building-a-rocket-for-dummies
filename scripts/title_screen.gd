@@ -5,7 +5,6 @@ var mode = "menu"
 func _ready() -> void:
 	$UI/ColorRect.color.a = 1
 	
-	
 	$UI/Settings/HBoxContainer/MasterVolume.value = AudioServer.get_bus_volume_linear(0)
 	$UI/Settings/HBoxContainer/MusicVolume.value = AudioServer.get_bus_volume_linear(1)
 	$UI/Settings/HBoxContainer/SoundEffectVolume.value = AudioServer.get_bus_volume_linear(2)
@@ -18,6 +17,7 @@ func _ready() -> void:
 	$UI/Settings/HBoxContainer/Modifiers/Flat.button_pressed = global.flat
 	$UI/Settings/HBoxContainer/Modifiers/BudgetFlash.button_pressed = global.budget_flash
 	$UI/Settings/HBoxContainer/Modifiers/Gun.button_pressed = global.gun
+	$UI/Settings/HBoxContainer/Modifiers/SkipDialogue.button_pressed = global.skip_dialogue
 	
 	$UI/Settings/HBoxContainer/FieldOfView.value = global.field_of_view
 
@@ -87,3 +87,7 @@ func _on_budget_flash_toggled(toggled_on: bool) -> void: global.budget_flash = t
 func _on_field_of_view_value_changed(value: float) -> void: global.field_of_view = value
 
 func _on_gun_toggled(toggled_on: bool) -> void: global.gun = toggled_on
+
+func _on_skip_dialogue_toggled(toggled_on: bool) -> void: global.skip_dialogue = toggled_on
+
+func _on_blind_toggled(toggled_on: bool) -> void: global.blind = toggled_on
