@@ -22,6 +22,8 @@ func ending():
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
+	$CanvasLayer/Control/GameEndButtons.visible = true
+	
 	$Camera3D.fov = 50
 	
 	$CanvasLayer/Control/ThePanel.visible = false 

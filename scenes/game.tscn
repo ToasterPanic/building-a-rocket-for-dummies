@@ -653,6 +653,7 @@ label_settings = SubResource("LabelSettings_264po")
 horizontal_alignment = 1
 
 [node name="GameEndButtons" type="HBoxContainer" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
