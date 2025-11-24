@@ -184,18 +184,23 @@ script = ExtResource("1_p57ef")
 
 [node name="PaintTheTownRag" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_pl11u")
+bus = &"Music"
 
 [node name="Drumroll" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ssvqc")
+bus = &"Sound Effects"
 
 [node name="Failure" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1kice")
+bus = &"Sound Effects"
 
 [node name="YouStink" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_5newe")
+bus = &"Sound Effects"
 
 [node name="Fix" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_5newe")
+bus = &"Sound Effects"
 
 [node name="StartCutscene" type="Camera3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.0892023, -0.648489, 5.973625)

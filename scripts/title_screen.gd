@@ -4,6 +4,11 @@ var mode = "menu"
 
 func _ready() -> void:
 	$UI/ColorRect.color.a = 1
+	
+	
+	$UI/Settings/HBoxContainer/MasterVolume.value = AudioServer.get_bus_volume_linear(0)
+	$UI/Settings/HBoxContainer/MusicVolume.value = AudioServer.get_bus_volume_linear(1)
+	$UI/Settings/HBoxContainer/SoundEffectVolume.value = AudioServer.get_bus_volume_linear(2)
 
 func _process(delta: float) -> void:
 	if mode == "menu":
@@ -38,3 +43,18 @@ func _on_credits_pressed() -> void:
 func _on_settings_pressed() -> void:
 	mode = "settings"
 	$UI/Settings.visible = true
+
+
+func _on_master_volume_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(0, value)
+	$UI/Settings/HBoxContainer/MasterVolume/Test.play()
+
+
+func _on_music_volume_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(1, value)
+	$UI/Settings/HBoxContainer/MusicVolume/Test.play()
+
+
+func _on_sound_effect_volume_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(2, value)
+	$UI/Settings/HBoxContainer/SoundEffectVolume/Test.play()

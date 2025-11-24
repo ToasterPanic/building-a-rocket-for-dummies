@@ -25,6 +25,7 @@ script = ExtResource("2_ygfx1")
 
 [node name="Explode" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_usb2a")
+bus = &"Sound Effects"
 
 [node name="Hitbox" type="Area3D" parent="."]
 collision_layer = 4

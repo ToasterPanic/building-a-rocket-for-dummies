@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bog8g01bf6xsp"]
+[gd_scene load_steps=12 format=3 uid="uid://bog8g01bf6xsp"]
 
 [ext_resource type="Script" uid="uid://dhjbqnq7glhpj" path="res://scripts/title_screen.gd" id="1_dc4i4"]
 [ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_mgrm8"]
 [ext_resource type="Texture2D" uid="uid://b1elgpgprp37r" path="res://textures/concrete.png" id="2_dc4i4"]
+[ext_resource type="AudioStream" uid="uid://d3c88peq3uqf8" path="res://sounds/voice.mp3" id="2_e54dn"]
 [ext_resource type="PackedScene" uid="uid://cskjwutyf0t8l" path="res://scenes/explodeable.tscn" id="3_e54dn"]
 [ext_resource type="Texture2D" uid="uid://dal7ii483vsq2" path="res://textures/grass.png" id="4_3yumr"]
 
@@ -181,6 +182,9 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
+[node name="Test" type="AudioStreamPlayer" parent="UI/Settings/HBoxContainer/MasterVolume"]
+stream = ExtResource("2_e54dn")
+
 [node name="RichTextLabel3" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
@@ -193,6 +197,10 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
+[node name="Test" type="AudioStreamPlayer" parent="UI/Settings/HBoxContainer/MusicVolume"]
+stream = ExtResource("2_e54dn")
+bus = &"Music"
+
 [node name="RichTextLabel4" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
@@ -204,6 +212,10 @@ layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 1.0
+
+[node name="Test" type="AudioStreamPlayer" parent="UI/Settings/HBoxContainer/SoundEffectVolume"]
+stream = ExtResource("2_e54dn")
+bus = &"Sound Effects"
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
 layout_mode = 2
@@ -226,8 +238,18 @@ text = "Uber Procrastination"
 
 [node name="TwoLeftFeet" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
 layout_mode = 2
-tooltip_text = "You have a time limit of 60 seconds. Good luck."
+tooltip_text = "Your movement controls \"rotate\" every 20 seconds."
 text = "Two Left Feet"
+
+[node name="HeavyBoxes" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
+layout_mode = 2
+tooltip_text = "You can't throw boxes, and boxes are harder to hold."
+text = "Heavy Boxes"
+
+[node name="Fat" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
+layout_mode = 2
+tooltip_text = "You can't jump."
+text = "Fat"
 
 [node name="ReturnButton" type="Button" parent="UI/Settings"]
 layout_mode = 1
@@ -322,4 +344,7 @@ material = SubResource("StandardMaterial3D_u26n3")
 [connection signal="pressed" from="UI/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="UI/Credits/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="value_changed" from="UI/Settings/HBoxContainer/MasterVolume" to="." method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="UI/Settings/HBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="UI/Settings/HBoxContainer/SoundEffectVolume" to="." method="_on_sound_effect_volume_value_changed"]
 [connection signal="pressed" from="UI/Settings/ReturnButton" to="." method="_on_return_button_pressed"]
