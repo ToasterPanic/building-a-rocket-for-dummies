@@ -9,6 +9,9 @@ var held_object = null
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if global.budget_flash:
+		speed = 50
 
 func _input(event):
 	if get_parent().game_end:

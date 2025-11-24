@@ -171,6 +171,7 @@ fit_content = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
 text = "Master Volume"
 fit_content = true
@@ -186,6 +187,7 @@ stream = ExtResource("2_e54dn")
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
 text = "Music Volume"
 fit_content = true
@@ -202,6 +204,7 @@ bus = &"Music"
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
 text = "Sound Effect Volume"
 fit_content = true
@@ -218,6 +221,7 @@ bus = &"Sound Effects"
 
 [node name="FieldOfViewLabel" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
 text = "Field of View: 90"
 fit_content = true
@@ -233,6 +237,7 @@ ticks_on_borders = true
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="UI/Settings/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
 text = "Modifiers"
 fit_content = true
@@ -275,6 +280,12 @@ layout_mode = 2
 tooltip_text = "You now view the world orthagonally."
 theme_override_font_sizes/font_size = 12
 text = "Flat"
+
+[node name="BudgetFlash" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
+layout_mode = 2
+tooltip_text = "You move concerningly fast now."
+theme_override_font_sizes/font_size = 12
+text = "Budget Flash"
 
 [node name="ReturnButton" type="Button" parent="UI/Settings"]
 layout_mode = 1
@@ -379,4 +390,5 @@ material = SubResource("StandardMaterial3D_u26n3")
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/HeavyBoxes" to="." method="_on_heavy_boxes_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Fat" to="." method="_on_fat_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Flat" to="." method="_on_flat_toggled"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/BudgetFlash" to="." method="_on_budget_flash_toggled"]
 [connection signal="pressed" from="UI/Settings/ReturnButton" to="." method="_on_return_button_pressed"]
