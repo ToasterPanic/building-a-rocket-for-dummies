@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://mif6kxwqpq3r"]
+[gd_scene load_steps=68 format=3 uid="uid://mif6kxwqpq3r"]
 
 [ext_resource type="Script" uid="uid://kov381xcww14" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_yqjtg"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://b4frgjvkfryyj" path="res://textures/thruster.png" id="5_rysoc"]
 [ext_resource type="Texture2D" uid="uid://b1elgpgprp37r" path="res://textures/concrete.png" id="5_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://csm8wsmsixn8k" path="res://textures/glass.png" id="6_dinhu"]
+[ext_resource type="AudioStream" uid="uid://bslkenev14tym" path="res://sounds/gunshot.mp3" id="7_js0lu"]
 [ext_resource type="PackedScene" uid="uid://cskjwutyf0t8l" path="res://scenes/explodeable.tscn" id="7_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bhw3gb1xs8abk" path="res://textures/screws_box.png" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://cn6li1bdqqe53" path="res://textures/cockpit_seat.png" id="9_bt5mj"]
@@ -31,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://dpgxhn68vqfso" path="res://textures/cockpit_seat_box.png" id="21_e1j6l"]
 [ext_resource type="AudioStream" uid="uid://d3c88peq3uqf8" path="res://sounds/voice.mp3" id="21_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://yrxrt2ytnej5" path="res://textures/nerd.png" id="23_wljb1"]
+[ext_resource type="Texture2D" uid="uid://b54uiee86gei6" path="res://textures/gun.png" id="24_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://c22cl1em4ipbf" path="res://textures/life_support_box.png" id="28_qouja"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnu2h"]
@@ -112,6 +114,7 @@ ambient_light_color = Color(0.45452422, 0.45452428, 0.45452422, 1)
 ambient_light_energy = 1.32
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p57ef"]
+size = Vector3(0.98, 0.98, 0.98)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5sy4"]
 albedo_texture = ExtResource("5_iywne")
@@ -269,6 +272,14 @@ use_collision = true
 collision_layer = 9
 collision_mask = 9
 size = Vector3(8, 8.537598, 8)
+material = SubResource("StandardMaterial3D_gee14")
+
+[node name="Floor46" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, -2.4333153, -4.6242104)
+use_collision = true
+collision_layer = 9
+collision_mask = 9
+size = Vector3(7.999, 1, 2)
 material = SubResource("StandardMaterial3D_gee14")
 
 [node name="Floor3" type="CSGBox3D" parent="."]
@@ -564,6 +575,10 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.104138)
 script = ExtResource("2_lnu2h")
 
+[node name="Gunshot" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("7_js0lu")
+max_polyphony = 100
+
 [node name="Meeple" type="Sprite3D" parent="Player"]
 pixel_size = 0.003
 billboard = 2
@@ -630,6 +645,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Gun" type="TextureRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -450.0
+offset_top = -450.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("24_v2yb1")
+expand_mode = 2
 
 [node name="ThePanel" type="PanelContainer" parent="CanvasLayer/Control"]
 custom_minimum_size = Vector2(160, 0)

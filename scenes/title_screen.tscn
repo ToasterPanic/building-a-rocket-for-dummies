@@ -287,6 +287,12 @@ tooltip_text = "You move concerningly fast now."
 theme_override_font_sizes/font_size = 12
 text = "Budget Flash"
 
+[node name="Gun" type="CheckBox" parent="UI/Settings/HBoxContainer/Modifiers"]
+layout_mode = 2
+tooltip_text = "You have a gun. You can only shoot crates to move them."
+theme_override_font_sizes/font_size = 12
+text = "Gun"
+
 [node name="ReturnButton" type="Button" parent="UI/Settings"]
 layout_mode = 1
 anchors_preset = 7
@@ -391,4 +397,5 @@ material = SubResource("StandardMaterial3D_u26n3")
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Fat" to="." method="_on_fat_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Flat" to="." method="_on_flat_toggled"]
 [connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/BudgetFlash" to="." method="_on_budget_flash_toggled"]
+[connection signal="toggled" from="UI/Settings/HBoxContainer/Modifiers/Gun" to="." method="_on_gun_toggled"]
 [connection signal="pressed" from="UI/Settings/ReturnButton" to="." method="_on_return_button_pressed"]

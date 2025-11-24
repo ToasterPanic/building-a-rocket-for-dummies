@@ -83,6 +83,9 @@ func _ready() -> void:
 		$Player/Camera3D.size = 5
 		$StartCutscene.projection = 1
 		$StartCutscene.size = 5
+		
+	if global.gun:
+		$CanvasLayer/Control/Gun.visible = true
 	
 	$CanvasLayer/Control/Timer.visible = false
 	$CanvasLayer/Control/ThePanel.visible = false

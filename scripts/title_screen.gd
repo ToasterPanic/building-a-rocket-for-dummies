@@ -17,6 +17,7 @@ func _ready() -> void:
 	$UI/Settings/HBoxContainer/Modifiers/Fat.button_pressed = global.fat
 	$UI/Settings/HBoxContainer/Modifiers/Flat.button_pressed = global.flat
 	$UI/Settings/HBoxContainer/Modifiers/BudgetFlash.button_pressed = global.budget_flash
+	$UI/Settings/HBoxContainer/Modifiers/Gun.button_pressed = global.gun
 	
 	$UI/Settings/HBoxContainer/FieldOfView.value = global.field_of_view
 
@@ -71,7 +72,6 @@ func _on_sound_effect_volume_value_changed(value: float) -> void:
 
 func _on_uber_procrastination_toggled(toggled_on: bool) -> void: global.uber_procrastination = toggled_on
 
-
 func _on_easy_mode_toggled(toggled_on: bool) -> void: global.easy_mode = toggled_on
 
 func _on_two_left_feet_toggled(toggled_on: bool) -> void: global.two_left_feet = toggled_on
@@ -85,3 +85,5 @@ func _on_flat_toggled(toggled_on: bool) -> void: global.flat = toggled_on
 func _on_budget_flash_toggled(toggled_on: bool) -> void: global.budget_flash = toggled_on
 
 func _on_field_of_view_value_changed(value: float) -> void: global.field_of_view = value
+
+func _on_gun_toggled(toggled_on: bool) -> void: global.gun = toggled_on

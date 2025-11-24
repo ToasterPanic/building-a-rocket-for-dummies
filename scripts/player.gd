@@ -12,6 +12,8 @@ func _ready():
 	
 	if global.budget_flash:
 		speed = 50
+	if global.gun:
+		$Camera3D/Interact.target_position.z = -99999
 
 func _input(event):
 	if get_parent().game_end:
@@ -29,12 +31,18 @@ func _physics_process(delta):
 		return 
 		
 	if Input.is_action_just_pressed("throw"):
-		if !global.heavy_boxes and (held_object != null):
+		if global.gun and $Camera3D/Interact.is_colliding():
+			$Camera3D/Interact.get_collider().sleeping = false
+			$Camera3D/Interact.get_collider().linear_velocity = $Camera3D.global_basis * Vector3(0, 0, -25)
+			
+			$Gunshot.play()
+		elif !global.heavy_boxes and (held_object != null):
 			held_object.linear_velocity = $Camera3D.global_basis * Vector3(0, 0, -11)
 			held_object = null
 	elif Input.is_action_just_pressed("interact"):
 		if held_object != null: held_object = null
-		elif $Camera3D/Interact.is_colliding(): held_object = $Camera3D/Interact.get_collider()
+		elif $Camera3D/Interact.is_colliding() and !global.gun: 
+			held_object = $Camera3D/Interact.get_collider()
 		
 	print(held_object)
 	
