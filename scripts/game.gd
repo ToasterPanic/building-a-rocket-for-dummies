@@ -1,6 +1,6 @@
 extends Node3D
 
-var clock = 60 + 60 + 5
+var clock = 60 + 60 + 2
 var game_end = true
 var zooming_in = true
 
