@@ -1,6 +1,6 @@
 extends Node3D
 
-var clock = 60 * 2.25
+var clock = 60 + 60 + 5
 var game_end = true
 var zooming_in = true
 
@@ -8,17 +8,19 @@ var start_dialogue = [
 	"hey dude uhhhhhhhhhhh",
 	"i know you haven't finished that rocket",
 	"we need it ready in two minutes",
-	"if we dont get it done boss is gonna be PEEVED",
+	"if you dont get it done boss is gonna be PEEVED",
 	"also",
 	"the parts SHOULD be in the building",
 	"some of the parts for that are lost though",
 	"so you might want to find them if you like having a job",
-	"not my problem though i can just blame you for it",
-	"good luck lolololololololololo"
+	"not my problem though",
+	"good luck lolololololololololol"
 ]
 
 func ending():
 	game_end = true
+	
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	$Camera3D.fov = 50
 	
@@ -155,3 +157,11 @@ func _on_collision_area_body_entered(body: Node3D) -> void:
 		$Rocket/CockpitSeat.visible = true
 	elif body.name == "LifeSupport":
 		$Rocket/LifeSupport.visible = true
+
+
+func _on_retry_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
+
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/title_screen.tscn")

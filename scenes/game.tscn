@@ -358,9 +358,21 @@ size = Vector3(1, 4, 4)
 material = SubResource("StandardMaterial3D_0tnpc")
 
 [node name="Floor37" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4.5, -25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4.5, -16.5)
+use_collision = true
+size = Vector3(4, 4, 2)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor40" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4.5, -31)
 use_collision = true
 size = Vector3(4, 4, 19)
+material = SubResource("StandardMaterial3D_0tnpc")
+
+[node name="Floor43" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 4.5, -19.5)
+use_collision = true
+size = Vector3(1, 4, 4)
 material = SubResource("StandardMaterial3D_0tnpc")
 
 [node name="Floor38" type="CSGBox3D" parent="."]
@@ -847,3 +859,5 @@ transform = Transform3D(-0.6815924, 0.122449346, 0.72141385, -0.006875199, 0.984
 fov = 50.0
 
 [connection signal="body_entered" from="Rocket/CollisionArea" to="." method="_on_collision_area_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/GameEndButtons/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/GameEndButtons/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
