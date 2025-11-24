@@ -17,6 +17,11 @@ func _input(event):
 		$Camera3D.rotation.x = clampf($Camera3D.rotation.x, -deg_to_rad(89), deg_to_rad(89))
 		
 func _physics_process(delta):
+	if get_parent().game_end:
+		velocity = Vector3(0, -9.8, 0)
+		move_and_slide()
+		return 
+		
 	if Input.is_action_just_pressed("throw"):
 		if held_object != null:
 			held_object.linear_velocity = $Camera3D.global_basis * Vector3(0, 0, -11)

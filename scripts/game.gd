@@ -1,7 +1,7 @@
 extends Node3D
 
-var clock = 60 * 2
-var game_end = false
+var clock = 60 * 2.25
+var game_end = true
 var zooming_in = true
 
 var start_dialogue = [
@@ -20,12 +20,16 @@ var start_dialogue = [
 func ending():
 	game_end = true
 	
+	$Camera3D.fov = 50
+	
 	$CanvasLayer/Control/ThePanel.visible = false 
 	$CanvasLayer/Control/PickUpPrompt.visible = false 
 	$CanvasLayer/Control/ThrowPrompt.visible = false 
 	$CanvasLayer/Control/Timer.visible = false
 	
 	$PaintTheTownRag.stop()
+	
+	$Player/Camera3D.current = true
 	
 	$Camera3D.current = true
 	
@@ -49,6 +53,45 @@ func ending():
 		
 		if randi_range(1, 5) == 1:
 			$YouStink.play()
+			
+func _ready() -> void:
+	game_end = true 
+	
+	var i = 0
+	while i < start_dialogue.size():
+		var character = 0
+		
+		$DialogueMan/Label3D.text = ""
+		
+		while character < start_dialogue[i].length():
+			$DialogueMan/Label3D.text = $DialogueMan/Label3D.text + start_dialogue[i][character]
+			
+			$DialogueMan/Voice.play()
+		
+			if Input.is_action_pressed("interact"):
+				await get_tree().create_timer(0.002).timeout
+			else:
+				await get_tree().create_timer(0.025).timeout
+			
+			character += 1
+			
+		if i != start_dialogue.size() - 1:
+			while Input.is_action_just_pressed("interact") == false:
+				await get_tree().create_timer(0.01).timeout
+		
+		i += 1
+		
+	$DialogueMan.go_away = true 
+	
+	$CanvasLayer/Control/AdvanceDialogue.visible = false
+	
+	await get_tree().create_timer(1.5).timeout
+	
+	game_end = false
+	
+	$Player/Camera3D.current = true
+	
+	$PaintTheTownRag.play()
 
 func _process(delta: float) -> void:
 	if game_end: 
@@ -64,6 +107,21 @@ func _process(delta: float) -> void:
 			pass
 		
 		return
+		
+	var text = """[font size=32]Checklist[/font]\n\n"""
+	
+	var to_text = func(val):
+		if val: return "X"
+		else: return " "
+	
+	text = text + "[" + to_text.call($Rocket/Screws.visible) + "] Screws\n"
+	text = text + "[" + to_text.call($Rocket/Thruster.visible) + "] Thruster\n"
+	text = text + "[" + to_text.call($Rocket/Fins.visible) + "] Fins\n"
+	text = text + "[" + to_text.call($Rocket/CockpitSeat.visible) + "] Cockpit Seat\n"
+	text = text + "[" + to_text.call($Rocket/LifeSupport.visible) + "] Life Support\n"
+	text = text + "[" + to_text.call($Rocket/ExteriorWalls.visible) + "] Exterior Walls\n"
+	
+	$CanvasLayer/Control/ThePanel/RichTextLabel.text = text
 	
 	if clock <= 0:
 		ending()

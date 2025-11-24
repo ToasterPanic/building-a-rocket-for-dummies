@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhncocas36gxd"]
+[gd_scene load_steps=15 format=3 uid="uid://bhncocas36gxd"]
 
 [ext_resource type="Texture2D" uid="uid://cpq3xbnh0fe27" path="res://textures/tnt.png" id="1_w3xhf"]
+[ext_resource type="Texture2D" uid="uid://dbpokropwcfsw" path="res://textures/explode_1.png" id="2_1fuol"]
+[ext_resource type="Texture2D" uid="uid://ci0ex45lbqbm" path="res://textures/explode_2.png" id="3_ktsxs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p57ef"]
 
@@ -13,6 +15,63 @@ lightmap_size_hint = Vector2i(14, 21)
 material = SubResource("StandardMaterial3D_kvpfn")
 custom_aabb = AABB(0, 0, 0, 1, 0, 0)
 
+[sub_resource type="Curve" id="Curve_4qevt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.27272728, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1oa1c"]
+curve = SubResource("Curve_4qevt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mfj4b"]
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 0, 0)
+damping_min = 3.0000002
+damping_max = 3.3000002
+alpha_curve = SubResource("CurveTexture_1oa1c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c5rea"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_1fuol")
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pm8m7"]
+material = SubResource("StandardMaterial3D_c5rea")
+size = Vector2(0.4, 0.4)
+orientation = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ps81q"]
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+damping_min = 3.0000002
+damping_max = 3.0000002
+alpha_curve = SubResource("CurveTexture_1oa1c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3syj"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_ktsxs")
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dle2n"]
+material = SubResource("StandardMaterial3D_b3syj")
+size = Vector2(0.4, 0.4)
+orientation = 2
+
 [node name="TNTBox" type="RigidBody3D"]
 collision_layer = 7
 mass = 0.3
@@ -22,3 +81,19 @@ shape = SubResource("BoxShape3D_p57ef")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_dinhu")
+
+[node name="Explosion1" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 96
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_mfj4b")
+draw_pass_1 = SubResource("PlaneMesh_pm8m7")
+
+[node name="Explosion2" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 96
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ps81q")
+draw_pass_1 = SubResource("PlaneMesh_dle2n")

@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="Building a Rocket for Dummies"
-run/main_scene="uid://mif6kxwqpq3r"
+run/main_scene="uid://bog8g01bf6xsp"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
 [editor_plugins]
@@ -65,3 +66,4 @@ throw={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.45777786, 0.53627586, 0.9135695, 1)

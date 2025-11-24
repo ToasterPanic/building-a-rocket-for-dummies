@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://mif6kxwqpq3r"]
+[gd_scene load_steps=56 format=3 uid="uid://mif6kxwqpq3r"]
 
 [ext_resource type="Script" uid="uid://kov381xcww14" path="res://scripts/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_yqjtg"]
@@ -25,7 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://cm1f7nltppnu0" path="res://textures/basic_box.png" id="12_ir15t"]
 [ext_resource type="Texture2D" uid="uid://d4kpog0nkrd4b" path="res://textures/thruster_box.png" id="13_ca42v"]
 [ext_resource type="Texture2D" uid="uid://cfvb2hjv6ut0o" path="res://textures/arrow.png" id="14_e1j6l"]
+[ext_resource type="Texture2D" uid="uid://dmqr0mtlwpx2" path="res://textures/meeple.png" id="19_sww3w"]
+[ext_resource type="Script" uid="uid://cnaoe675sx501" path="res://scripts/dialogue_man.gd" id="20_sgl2t"]
+[ext_resource type="Texture2D" uid="uid://d3xjo7v6qpgc7" path="res://textures/meeple_2.png" id="20_suyxu"]
 [ext_resource type="Texture2D" uid="uid://dpgxhn68vqfso" path="res://textures/cockpit_seat_box.png" id="21_e1j6l"]
+[ext_resource type="AudioStream" uid="uid://d3c88peq3uqf8" path="res://sounds/voice.mp3" id="21_sgl2t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lnu2h"]
 radius = 1.2333984
@@ -106,13 +110,13 @@ lightmap_size_hint = Vector2i(14, 21)
 material = SubResource("StandardMaterial3D_ca42v")
 custom_aabb = AABB(0, 0, 0, 1, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnb83"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgl2t"]
 albedo_texture = ExtResource("13_ca42v")
 uv1_scale = Vector3(3, 2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_sww3w"]
 lightmap_size_hint = Vector2i(14, 21)
-material = SubResource("StandardMaterial3D_qnb83")
+material = SubResource("StandardMaterial3D_sgl2t")
 custom_aabb = AABB(0, 0, 0, 1, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhx41"]
@@ -142,7 +146,6 @@ script = ExtResource("1_p57ef")
 
 [node name="PaintTheTownRag" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_pl11u")
-autoplay = true
 
 [node name="Drumroll" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ssvqc")
@@ -155,6 +158,11 @@ stream = ExtResource("4_5newe")
 
 [node name="Fix" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_5newe")
+
+[node name="StartCutscene" type="Camera3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.0892023, -0.648489, 5.973625)
+current = true
+fov = 90.0
 
 [node name="Rocket" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -350,15 +358,15 @@ size = Vector3(1, 4, 4)
 material = SubResource("StandardMaterial3D_0tnpc")
 
 [node name="Floor37" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 4.5, -30.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4.5, -25)
 use_collision = true
-size = Vector3(1, 4, 8)
+size = Vector3(4, 4, 19)
 material = SubResource("StandardMaterial3D_0tnpc")
 
 [node name="Floor38" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 4.5, -30.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -25)
 use_collision = true
-size = Vector3(1, 4, 8)
+size = Vector3(8, 4, 19)
 material = SubResource("StandardMaterial3D_0tnpc")
 
 [node name="Floor39" type="CSGBox3D" parent="."]
@@ -367,16 +375,10 @@ use_collision = true
 size = Vector3(8, 4, 1)
 material = SubResource("StandardMaterial3D_0tnpc")
 
-[node name="Floor40" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4.5, -26)
-use_collision = true
-size = Vector3(8, 4, 1)
-material = SubResource("StandardMaterial3D_0tnpc")
-
 [node name="Floor41" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 7, -30.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 7, -25.5)
 use_collision = true
-size = Vector3(8, 1, 10)
+size = Vector3(18, 1, 20)
 material = SubResource("StandardMaterial3D_0tnpc")
 
 [node name="Floor31" type="CSGBox3D" parent="."]
@@ -464,6 +466,11 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.104138)
 script = ExtResource("2_lnu2h")
 
+[node name="Meeple" type="Sprite3D" parent="Player"]
+pixel_size = 0.003
+billboard = 2
+texture = ExtResource("19_sww3w")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_lbhrr")
 
@@ -474,6 +481,30 @@ fov = 90.0
 [node name="Interact" type="RayCast3D" parent="Player/Camera3D"]
 target_position = Vector3(0, 0, -2.5)
 collision_mask = 2
+
+[node name="DialogueMan" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9107977, 0.82900405, 5.973625)
+script = ExtResource("20_sgl2t")
+
+[node name="Voice" type="AudioStreamPlayer" parent="DialogueMan"]
+stream = ExtResource("21_sgl2t")
+
+[node name="Meeple" type="Sprite3D" parent="DialogueMan"]
+pixel_size = 0.003
+billboard = 2
+texture = ExtResource("20_suyxu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DialogueMan"]
+shape = SubResource("CapsuleShape3D_lbhrr")
+
+[node name="Label3D" type="Label3D" parent="DialogueMan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2169011, 0)
+billboard = 1
+texture_filter = 5
+text = "good luck lolololololololo"
+font_size = 48
+vertical_alignment = 2
+autowrap_mode = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -541,6 +572,23 @@ grow_vertical = 2
 text = "[E] Drop
 [Left Click] Throw"
 horizontal_alignment = 1
+
+[node name="AdvanceDialogue" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "[E] Advance Dialogue"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timer" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1

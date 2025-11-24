@@ -1,0 +1,163 @@
+[gd_scene load_steps=11 format=3 uid="uid://bog8g01bf6xsp"]
+
+[ext_resource type="Script" uid="uid://dhjbqnq7glhpj" path="res://scripts/title_screen.gd" id="1_dc4i4"]
+[ext_resource type="Texture2D" uid="uid://b2gqu670g1lp3" path="res://textures/frame.png" id="1_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://b1elgpgprp37r" path="res://textures/concrete.png" id="2_dc4i4"]
+[ext_resource type="PackedScene" uid="uid://cskjwutyf0t8l" path="res://scenes/explodeable.tscn" id="3_e54dn"]
+[ext_resource type="Texture2D" uid="uid://dal7ii483vsq2" path="res://textures/grass.png" id="4_3yumr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1a2ex"]
+font_size = 48
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cs5ya"]
+albedo_texture = ExtResource("2_dc4i4")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mykxm"]
+albedo_texture = ExtResource("2_dc4i4")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="Environment" id="Environment_tklts"]
+ambient_light_source = 2
+ambient_light_color = Color(0.45452422, 0.45452428, 0.45452422, 1)
+ambient_light_energy = 1.32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u26n3"]
+albedo_texture = ExtResource("4_3yumr")
+uv1_scale = Vector3(10, 10, 10)
+
+[node name="TitleScreen" type="Node3D"]
+script = ExtResource("1_dc4i4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.49756664, 0.098538205, 0.86181074, 0.019163337, 0.99203557, -0.12449189, -0.86721414, 0.078458175, 0.4917155, 7, -1, 4)
+fov = 50.0
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 238.0
+offset_bottom = 347.0
+
+[node name="Label" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "Building a
+Rocket for
+Dummies"
+label_settings = SubResource("LabelSettings_1a2ex")
+
+[node name="Play" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "Play
+"
+
+[node name="Settings" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Credits" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Quit" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Rocket" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 2
+texture = ExtResource("1_mgrm8")
+
+[node name="Floor2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.768799, 0)
+use_collision = true
+size = Vector3(8, 8.537598, 8)
+material = SubResource("StandardMaterial3D_cs5ya")
+
+[node name="Floor6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, -0.5, 0)
+use_collision = true
+size = Vector3(1, 4, 32)
+material = SubResource("StandardMaterial3D_mykxm")
+
+[node name="Floor5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -0.5, -16)
+use_collision = true
+size = Vector3(12, 4, 1)
+material = SubResource("StandardMaterial3D_mykxm")
+
+[node name="Floor7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -0.5, -16)
+use_collision = true
+size = Vector3(16, 4, 1)
+material = SubResource("StandardMaterial3D_mykxm")
+
+[node name="Floor10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -0.5, -19)
+use_collision = true
+size = Vector3(1, 4, 5)
+material = SubResource("StandardMaterial3D_mykxm")
+
+[node name="Floor11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -0.5, -26)
+use_collision = true
+size = Vector3(6, 4, 1)
+material = SubResource("StandardMaterial3D_mykxm")
+
+[node name="Floor28" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -0.5, -30)
+use_collision = true
+size = Vector3(4, 4, 1)
+material = SubResource("StandardMaterial3D_mykxm")
+
+[node name="Floor30" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, -0.5, -32.5)
+use_collision = true
+size = Vector3(1, 4, 6)
+material = SubResource("StandardMaterial3D_mykxm")
+
+[node name="Floor15" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -21.5)
+gi_mode = 0
+use_collision = true
+size = Vector3(32, 1, 12)
+material = SubResource("StandardMaterial3D_mykxm")
+
+[node name="Explodeable" parent="." instance=ExtResource("3_e54dn")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.5, -0.5, -23.5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Explodeable"]
+environment = SubResource("Environment_tklts")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Explodeable"]
+transform = Transform3D(1, 0, 0, 0, 0.18096548, 0.98348945, 0, -0.98348945, 0.18096548, 0, 0, 0)
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+use_collision = true
+size = Vector3(32, 1, 32)
+material = SubResource("StandardMaterial3D_u26n3")
+
+[connection signal="pressed" from="UI/VBoxContainer/Play" to="." method="_on_play_pressed"]
